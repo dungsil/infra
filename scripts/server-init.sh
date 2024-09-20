@@ -8,6 +8,7 @@
 # INIT_USER_ID: 서버의 접근할 기본 사용자 계정의 UID
 # INIT_USERNAME: 서버의 접근할 기본 사용자 계정
 # INIT_USER_SSH_KEY: 사용자의 SSH 공개키
+# INIT_TS_AUTH_KEY: Tailscale 인증 키
 
 # 호스트명 설정
 sudo hostnamectl set-hostname ${INIT_HOSTNAME}
@@ -29,6 +30,9 @@ echo "${INIT_USER_SSH_KEY}" >> /home/${INIT_USERNAME}/.ssh/authorized_keys
 sudo chown ${INIT_USERNAME}:${INIT_USERNAME} -R /home/${INIT_USERNAME}
 sudo chmod 700 /home/${INIT_USERNAME}/.ssh
 sudo chmod 600 /home/${INIT_USERNAME}/.ssh/authorized_keys
+
+# TailScale 설치
+curl -fsSL https://tailscale.com/install.sh | sh && sudo tailscale up --auth-key=${INIT_TS_AUTH_KEY}
 
 # 도커 설치
 sudo apt-get install ca-certificates curl gnupg -y
