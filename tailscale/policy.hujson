@@ -1,3 +1,4 @@
+// This tailnet's ACLs are maintained in https://github.com/dungsil/infra/blob/main/tailscale/policy.hujson
 {
   // 사용자 그룹 선언
   "groups": {
