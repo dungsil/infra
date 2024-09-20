@@ -6,11 +6,12 @@ on:
     branches:
       - main
     paths:
+      - .github/workflows/tailscale.yml
       - tailscale/**
 
 jobs:
   acl:
-    name: Tailscale ACL (Access Control)
+    name: ACL (Access Control)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -32,7 +33,7 @@ jobs:
       - name: Tailscale ACL 동기화
         uses: tailscale/gitops-acl-action@v1.3.0
         with:
-          tailnet: ${{ secrets.TS_TAILNET }}
-          api-key: ${{ secrets.TS_API_KEY }}
+          tailnet: ${{ env.TS_TAILNET }}
+          api-key: ${{ env.TS_API_KEY }}
           action: apply
           policy-file: './tailscale/policy.hujson'
