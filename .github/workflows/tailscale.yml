@@ -14,9 +14,9 @@ jobs:
     name: ACL (Access Control)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
       - name: 1Password 에서 secrets 불러오기
-        uses: 1Password/load-secrets-action@v2
+        uses: 1Password/load-secrets-action@581a835fb51b8e7ec56b71cf2ffddd7e68bb25e0 # v2
         with:
           export-env: true
         env:
@@ -25,13 +25,13 @@ jobs:
           TS_API_KEY: "op://prod/TailscaleAccessToken_IaC/credential"
           TS_USERNAME: "op://prod/TailscaleAccessToken_IaC/username"
       - name: policy.hujson 내 환경변수 대체
-        uses: franzbischoff/replace_envs@v2
+        uses: franzbischoff/replace_envs@0da5ee21fbce88ae5609431dfea99dc62230d4af # v2
         with:
           commit: false
           from_file: './tailscale/policy.hujson'
           to_file: './tailscale/policy.hujson'
       - name: Tailscale ACL 동기화
-        uses: tailscale/gitops-acl-action@v1.3.0
+        uses: tailscale/gitops-acl-action@19b4266107dc265751921ccf27b2baa044e6fae7 # v1.3.0
         with:
           tailnet: ${{ env.TS_TAILNET }}
           api-key: ${{ env.TS_API_KEY }}
