@@ -1,0 +1,49 @@
+{
+  // 사용자 그룹 선언
+  "groups": {
+    "group:me": [
+      "${TS_USERNAME}"
+    ],
+  },
+  // 태그 정의
+  "tagOwners": {
+    "tag:type-pc": [
+      "group:me"
+    ],
+    "tag:type-server": [
+      "group:me"
+    ],
+  },
+  // 접근제어 추가
+  "acls": [
+    // 기본적으로 모든 트래픽을 허용
+    {
+      "action": "accept",
+      "src": [
+        "*"
+      ],
+      "dst": [
+        "*:*"
+      ]
+    },
+  ],
+  // Tailscale SSH 사용자 및 장비 정의
+  "ssh": [
+    // pc와 서버 만 서버에 SSH 접근가능하며, nonroot 사용자만 접근가능
+    {
+      "action": "accept",
+      "src": [
+        "tag:type-pc",
+        "tag:type-server"
+      ],
+      "dst": [
+        "tag:type-server"
+      ],
+      "users": [
+        "autogroup:nonroot"
+      ],
+    },
+  ],
+  "nodeAttrs": [],
+  "tests": [],
+}
