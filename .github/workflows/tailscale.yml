@@ -13,6 +13,7 @@ jobs:
   acl:
     name: ACL (Access Control)
     runs-on: ubuntu-latest
+    environment: Tailscale
     steps:
       - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
       - name: 1Password 에서 secrets 불러오기
