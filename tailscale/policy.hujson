@@ -14,6 +14,9 @@
     "tag:type-server": [
       "group:me"
     ],
+    "tag:type-ci": [
+      "group:me"
+    ]
   },
   // 접근제어 추가
   "acls": [
@@ -35,7 +38,7 @@
       "action": "accept",
       "src": [
         "tag:type-pc",
-        "tag:type-server"
+        "tag:type-ci"
       ],
       "dst": [
         "tag:type-server"
